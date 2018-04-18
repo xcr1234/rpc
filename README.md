@@ -2,7 +2,7 @@
 
 简易RPC,利用Java序列化机制实现
 
-[下载](rpc.jar)
+[下载](https://github.com/xcr1234/rpc/blob/master/rpc.jar?raw=true)
 
 ## 实例
 
