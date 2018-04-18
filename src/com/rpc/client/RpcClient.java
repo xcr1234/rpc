@@ -131,9 +131,9 @@ public class RpcClient {
         InetSocketAddress address = new InetSocketAddress(hostname,port);
         Socket socket = new Socket();
         if(readTimeout > 0){
-            socket.connect(address);
-        }else{
             socket.connect(address,readTimeout);
+        }else{
+            socket.connect(address);
         }
         if(soTimeout > 0){
             socket.setSoTimeout(soTimeout);
