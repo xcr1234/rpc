@@ -2,6 +2,8 @@
 
 简易RPC,利用Java序列化机制实现
 
+[下载](rpc.jar)
+
 ## 实例
 
 接口：
@@ -49,7 +51,7 @@ public class TestClient {
 }
 ```
 
-## 验证
+## 认证
 
 ```java
 server.setAuthorizer(new Authorizer() {
