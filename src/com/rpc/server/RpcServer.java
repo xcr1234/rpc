@@ -29,7 +29,7 @@ public class RpcServer extends Thread implements Closeable{
 
     public RpcServer(int port) throws IOException {
         this.port = port;
-        this.serverSocket = new ServerSocket(port);
+        this.serverSocket = newServerSocket(port);
         this.serverHandler.setServer(this);
     }
 
@@ -41,6 +41,10 @@ public class RpcServer extends Thread implements Closeable{
     public void setServerHandler(ServerHandler serverHandler) {
         this.serverHandler = serverHandler;
         this.serverHandler.setServer(this);
+    }
+
+    protected ServerSocket newServerSocket(int port) throws IOException {
+        return new ServerSocket(port);
     }
 
     public ServerHandler getServerHandler() {
@@ -110,6 +114,7 @@ public class RpcServer extends Thread implements Closeable{
                 ResultInfo resultInfo = new ResultInfo();
                 serverHandler.handle(resultInfo,connection,clientVersion,invocationInfo,auth);
                 connection.writeObject(resultInfo);
+                connection.flush();
             }catch (Exception e){
                 e.printStackTrace();
             }finally {

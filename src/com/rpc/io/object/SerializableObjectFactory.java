@@ -26,6 +26,11 @@ public class SerializableObjectFactory implements ObjectFactory {
             public void writeObject(Object object) throws IOException {
                 objectOutputStream.writeObject(object);
             }
+
+            @Override
+            public void flush() throws IOException {
+                objectOutputStream.flush();
+            }
         }
         return new Out(out);
     }

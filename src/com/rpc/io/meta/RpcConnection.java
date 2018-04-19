@@ -22,16 +22,20 @@ public class RpcConnection implements Closeable{
 
     public void writeObject(Object o) throws IOException{
         if(out == null){
-            out = objectFactory.getOut(socket.getOutputStream());
+            out = getObjectFactory().getOut(socket.getOutputStream());
         }
         out.writeObject(o);
     }
 
     public <T> T readObject(Class<T> expectedClass) throws IOException,ClassNotFoundException{
          if(in == null){
-             in = objectFactory.getInput(socket.getInputStream());
+             in = getObjectFactory().getInput(socket.getInputStream());
          }
          return in.readObject(expectedClass);
+    }
+
+    public void flush() throws IOException{
+        out.flush();
     }
 
     public ObjectFactory getObjectFactory() {
@@ -41,6 +45,8 @@ public class RpcConnection implements Closeable{
     public void setObjectFactory(ObjectFactory objectFactory) {
         this.objectFactory = objectFactory;
     }
+
+
 
     @Override
     public void close() throws IOException {

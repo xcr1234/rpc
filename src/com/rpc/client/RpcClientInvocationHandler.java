@@ -30,6 +30,7 @@ public class RpcClientInvocationHandler extends BaseInvocationHandler {
             connection.writeObject(client.getVersion());
             connection.writeObject(invocationInfo);
             connection.writeObject(client.getAuth());
+            connection.flush();
             resultInfo = connection.readObject(ResultInfo.class);
         }catch (IOException e){
             throw new RpcConnException(e);

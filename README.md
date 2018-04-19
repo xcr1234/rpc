@@ -66,3 +66,22 @@ server.setAuthorizer(new Authorizer() {
 ```java
 rpcClient.setAuth(new BaseAuth("admin","admin"));
 ```
+
+## Kryo支持
+
+java默认的序列化性能很低，因此引入了kryo序列化，以提高性能
+
+引入kryo的jar包：
+
+服务端
+
+```java
+server.setObjectFactory(new KryoObjectFactory());
+```
+
+客户端
+
+```java
+rpcClient.setObjectFactory(new KryoObjectFactory());
+```
+
