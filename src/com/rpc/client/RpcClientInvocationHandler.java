@@ -52,4 +52,8 @@ public class RpcClientInvocationHandler extends BaseInvocationHandler {
         return resultInfo.getResult();
     }
 
+    @Override
+    protected String toStringImpl(Object proxy) {
+        return "RpcClientProxy$" + type.getName() + "@" + Integer.toHexString(System.identityHashCode(proxy));
+    }
 }

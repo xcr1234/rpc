@@ -36,7 +36,7 @@ public abstract class BaseInvocationHandler implements InvocationHandler {
 
 
     protected String toStringImpl(Object proxy){
-        return String.valueOf(proxy);
+        return proxy.getClass().getName() + "@" + Integer.toHexString(System.identityHashCode(proxy));
     }
 
     protected void finalizeImpl(Object proxy) throws Throwable{
